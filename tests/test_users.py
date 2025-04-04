@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 
 def test_create_user(user_service, user_factory):
-    user = user_factory.create_user("test_user1", "test_password2")
+    user = user_factory.create_user("user_name", "user_password")
     response = user_service.create_user(user.user_name, user.user_password)
     assert response.status_code == 200
     response_data = response.json()
