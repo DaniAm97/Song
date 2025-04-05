@@ -1,5 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 
 
 class SongModel(BaseModel):
-    grade: int
+    genre: str
+    performer: str
+    title: str
+    year: int
+    rating: int = Field(default=0)

@@ -8,7 +8,25 @@ class UserService:
             api_client = APIClient()
         self.api_client = api_client
 
-    def create_user(self, username: str, password: str):
-        user_data = UserModel(user_name=username, user_password=password)
-        response = self.api_client.post('/users/add_user', json=user_data.model_dump())
+    def add_user(self, user: UserModel):
+        response = self.api_client.post('/users/add_user', json=user.model_dump())
+        return response
+
+    def add_playlist(self, user_model: UserModel):
+        data = {
+            "playlist_name": user_model.playlist.name,
+            "user_name": user_model.user_name,
+            "user_password": user_model.user_password
+        }
+        response = self.api_client.post('/users/add_playlist', json=data)
+        return response
+
+    def add_friend(self, user_model: UserModel, friend_name: str):
+        data = {
+            "friend_name": friend_name,
+            "user_name": user_model.user_name,
+            "user_password": user_model.user_password
+        }
+
+        response = self.api_client.put('/users/add_friend', json=data)
         return response
