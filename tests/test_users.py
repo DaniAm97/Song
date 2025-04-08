@@ -1,9 +1,9 @@
-
-
 def test_create_user(user_service, user_factory):
     user = user_factory.create_user(
         username="test_username",
-        password="test_password"
+        password="test_password",
+        playlist_name="daniTest",
+        song="test123"
     )
     response = user_service.add_user(user)
 
@@ -15,7 +15,10 @@ def test_create_user(user_service, user_factory):
 
 
 def test_validate_existing_user(user_service, user_factory):
-    user = user_factory.get_user()
+    user = user_factory.create_user(
+        username="test_username",
+        password="test_password"
+    )
     response = user_service.add_user(user)
 
     assert response.status_code == 200
@@ -38,7 +41,8 @@ def test_add_playlist_to_user(user_service, user_factory):
     assert response.status_code == 200
 
     response_data = response.json()
-    assert response_data["data"] == user.playlist.name
+    print(response_data)
+    assert response_data["data"] == user.playlists[0].name
     assert response_data["message"] == "OK"
 
 
@@ -56,7 +60,7 @@ def test_validate_existing_playlist_should_return_error(user_service, user_facto
     assert response.status_code == 200
 
     response_data = response.json()
-    assert response_data["error"] == f"{user.playlist.name} already a playlist of {user.user_name}"
+    assert response_data["error"] == f"{user.playlists[0].name} already a playlist of {user.user_name}"
 
 
 def test_add_new_friend_to_user(user_service, user_factory):
@@ -73,7 +77,6 @@ def test_add_new_friend_to_user(user_service, user_factory):
     assert response_data["message"] == "OK"
 
 
-
 def test_validate_existing_friend_should_return_error(user_service, user_factory):
     user = user_factory.create_user(
         username="TestUsername",
@@ -85,8 +88,3 @@ def test_validate_existing_friend_should_return_error(user_service, user_factory
 
     response_data = response.json()
     assert response_data["error"] == f'Savi111 already a friend of {user.user_name}'
-
-
-
-
-

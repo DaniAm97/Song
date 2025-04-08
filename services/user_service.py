@@ -14,7 +14,7 @@ class UserService:
 
     def add_playlist(self, user_model: UserModel):
         data = {
-            "playlist_name": user_model.playlist.name,
+            "playlist_name": user_model.playlists[0].name,
             "user_name": user_model.user_name,
             "user_password": user_model.user_password
         }

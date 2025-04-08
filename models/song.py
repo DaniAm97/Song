@@ -1,9 +1,10 @@
-from pydantic import BaseModel,Field
+from pydantic import BaseModel, Field
+from typing import Optional
 
 
 class SongModel(BaseModel):
-    genre: str
-    performer: str
+    genre: Optional[str] = None
+    performer: Optional[str] = None
     title: str
-    year: int
+    year: Optional[int] = None
     rating: int = Field(default=0)
