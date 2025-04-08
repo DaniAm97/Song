@@ -1,9 +1,7 @@
 def test_create_user(user_service, user_factory):
     user = user_factory.create_user(
-        username="test_username",
-        password="test_password",
-        playlist_name="daniTest",
-        song="test123"
+        username="",
+        password=""
     )
     response = user_service.add_user(user)
 
@@ -30,9 +28,9 @@ def test_validate_existing_user(user_service, user_factory):
 
 def test_add_playlist_to_user(user_service, user_factory):
     user = user_factory.create_user(
-        username="test_username2",
-        password="TestPassword2",
-        playlist_name="NewPlaylist"
+        username="Arnold",
+        password="topsicret",
+        playlist_name="The best of the best of the best1"
     )
     user_service.add_user(user)
 
@@ -69,11 +67,11 @@ def test_add_new_friend_to_user(user_service, user_factory):
         password="TestPassword",
     )
     user_service.add_user(user)
-    response = user_service.add_friend(user, "Savi111")
+    response = user_service.add_friend(user, "Savi1112")
     assert response.status_code == 200
 
     response_data = response.json()
-    assert response_data["data"] == "Savi111"
+    assert response_data["data"] == "Savi1112"
     assert response_data["message"] == "OK"
 
 
