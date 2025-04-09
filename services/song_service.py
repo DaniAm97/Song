@@ -24,13 +24,24 @@ class SongService:
         response = self.api_client.post("/songs/add_song", json=song_data)
         return response
 
-    # def upvote_song(self, user: UserModel, song: SongModel):
-    #     data = \
-    #         {
-    #             "playlist_name": user.playlists[0].name,
-    #             "song_title": song.title,
-    #             "user_name": user.user_name,
-    #             "user_password": user.user_password
-    #         }
-    #     response = self.api_client.put('/songs/upvote', json=data)
-    #     return response
+    def up_vote_song(self, user: UserModel, song: SongModel):
+        data = \
+            {
+                "playlist_name": user.playlists[0].name,
+                "song_title": song.title,
+                "user_name": user.user_name,
+                "user_password": user.user_password
+            }
+        response = self.api_client.put('/songs/upvote', json=data)
+        return response
+
+    def down_vote_song(self, user: UserModel, song: SongModel):
+        data = \
+            {
+                "playlist_name": user.playlists[0].name,
+                "song_title": song.title,
+                "user_name": user.user_name,
+                "user_password": user.user_password
+            }
+        response = self.api_client.put('/songs/downvote', json=data)
+        return response

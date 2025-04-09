@@ -12,7 +12,7 @@ class UserService:
         response = self.api_client.post('/users/add_user', json=user.model_dump())
         return response
 
-    def add_playlist(self, user_model: UserModel):
+    def add_playlist(self, user_model: UserModel,):
         data = {
             "playlist_name": user_model.playlists[0].name,
             "user_name": user_model.user_name,

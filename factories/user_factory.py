@@ -5,15 +5,11 @@ from models.song import SongModel
 
 class UserFactory:
     @staticmethod
-    def create_user(username, password, playlist_name=None, song=None):
+    def create_user(username, password, playlist_name=None):
         playlists = []
 
         if playlist_name:
-            if song:
-                song_data = SongModel(title=song)
-                playlists = [PlaylistModel(name=playlist_name, songs=[song_data])]
-            else:
-                playlists = [PlaylistModel(name=playlist_name, songs=[])]  # Empty list if no song is provided
+            playlists = [PlaylistModel(name=playlist_name, songs=[])]  # Empty list if no song is provided
 
         return UserModel(user_name=username, user_password=password, playlists=playlists, friends=[])
 
