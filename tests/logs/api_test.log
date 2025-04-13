@@ -1,0 +1,5 @@
+2025-04-12 15:10:17,708 - INFO - ========== Starting test: test_create_user ==========
+2025-04-12 15:10:17,709 - DEBUG - Creating user with payload: user_name='testUser' user_password='testUserPassword' friends=[] playlists=[]
+2025-04-12 15:10:17,713 - DEBUG - Response status: 200
+2025-04-12 15:10:17,713 - DEBUG - Response body: {'data': 'testUser', 'message': 'OK'}
+2025-04-12 15:10:17,714 - INFO - ========== Finished test: test_create_user ==========

@@ -7,4 +7,4 @@ class SongModel(BaseModel):
     performer: Optional[str] = None
     title: str
     year: Optional[int] = None
-    rating: int = Field(default=0)
+    rating: int = 0

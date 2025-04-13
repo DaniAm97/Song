@@ -9,10 +9,21 @@ class UserService:
         self.api_client = api_client
 
     def add_user(self, user: UserModel):
-        response = self.api_client.post('/users/add_user', json=user.model_dump())
+        data = {
+            "user_name": user.user_name,
+            "user_password": user.user_password
+        }
+        response = self.api_client.post('/users/add_user', json=data)
         return response
 
-    def add_playlist(self, user_model: UserModel,):
+    def get_user(self, user: UserModel):
+        data = {
+            "user_name": user.user_name,
+        }
+        response = self.api_client.get("/users/get_user", params=data)
+        return response
+
+    def add_playlist(self, user_model: UserModel):
         data = {
             "playlist_name": user_model.playlists[0].name,
             "user_name": user_model.user_name,

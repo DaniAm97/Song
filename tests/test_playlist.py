@@ -20,6 +20,7 @@ def test_validation_add_song_that_already_in_the_playlist(playlist_service, user
     user_service.add_playlist(user)
     new_song = song_factory.create_song("Song 1212")
     song_service.add_song(new_song)
+    playlist_service.add_song_to_playlist(song=new_song, user=user, playlist=user.playlists[0])
     response = playlist_service.add_song_to_playlist(song=new_song, user=user, playlist=user.playlists[0])
     response_data = response.json()
 

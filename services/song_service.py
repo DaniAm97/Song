@@ -9,8 +9,9 @@ class SongService:
             api_client = APIClient()
         self.api_client = api_client
 
-    def get_song(self, song_title):
-        response = self.api_client.get('/songs/get_song', params={"song_title": song_title})
+    def get_song(self, song: SongModel):
+        data = {"song_title": song.title}
+        response = self.api_client.get('/songs/get_song', params=data)
         return response
 
     def add_song(self, song: SongModel):
@@ -19,7 +20,8 @@ class SongService:
                 "song_genre": song.genre,
                 "song_performer": song.performer,
                 "song_title": song.title,
-                "song_year": song.year
+                "song_year": song.year,
+                "rating": song.rating
             }
         response = self.api_client.post("/songs/add_song", json=song_data)
         return response
