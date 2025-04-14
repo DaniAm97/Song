@@ -3,6 +3,7 @@ from models.playlist import PlaylistModel
 from models.user import UserModel
 from models.song import SongModel
 from services.song_service import SongService
+from logger import logger
 
 
 class PlaylistService:
@@ -20,4 +21,6 @@ class PlaylistService:
                 "user_password": user.user_password
             }
         response = self.api_Client.post('/playlists/add_song', json=data)
+        logger.debug(f"Response status of add_song_to_playlist: {response.status_code}")
+        logger.debug(f"Response body of add_song_to_playlist: {response.json()}")
         return response

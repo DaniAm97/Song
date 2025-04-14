@@ -28,7 +28,7 @@ def test_validate_existing_song_in_the_system(song_factory, song_service):
 
     assert song.status_code == 200
 
-    #2 ways to get the error message
+    # 2 ways to get the error message
     assert response_data["error"] == "this song already exist in the collection"
     assert response_data["error"] == response_data.get("error")
 
@@ -50,8 +50,10 @@ def test_validate_get_song_that_doesnt_exist(song_factory, song_service):
     assert response_data['error'] == f'this song does not exsist'
 
 
-def test_upvote_song(song_factory, song_service, user_factory, user_service, playlist_factory, playlist_service):
-    user = user_factory.create_user("testcheckx", "test1", "playlistcheck1")
+def test_upvote_song(song_factory, song_service, user_factory, user_service, playlist_factory, playlist_service,
+                     fake_user_with_playlist):
+    # user = user_factory.create_user("testcheckx", "test1", "playlistcheck1")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("Song x10")
@@ -85,8 +87,9 @@ def test_upvote_song_with_wrong_user_password(song_factory, song_service, user_f
 
 
 def test_validation_upvote_song_that_not_exist(song_factory, song_service, user_factory, user_service, playlist_factory,
-                                               playlist_service):
-    user = user_factory.create_user("TestStack", "test1", "playlist check1")
+                                               playlist_service, fake_user_with_playlist):
+    # user = user_factory.create_user("TestStack", "test1", "playlist check1")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("")
@@ -97,8 +100,10 @@ def test_validation_upvote_song_that_not_exist(song_factory, song_service, user_
     assert response_data['error'] == 'no such song in the songs collection'
 
 
-def test_down_vote_song(user_service, user_factory, song_service, song_factory, playlist_service):
-    user = user_factory.create_user("danidani", "dani123", "psadlasdasd")
+def test_down_vote_song(user_service, user_factory, song_service, song_factory, playlist_service,
+                        fake_user_with_playlist):
+    # user = user_factory.create_user("danidani", "dani123", "psadlasdasd")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song(title="down_vote_song")
@@ -106,7 +111,6 @@ def test_down_vote_song(user_service, user_factory, song_service, song_factory, 
     song_service.up_vote_song(user=user, song=new_song)  # upvote 0+1 =1
     song_service.up_vote_song(user=user, song=new_song)  # upvote 1+1 =2
     playlist_service.add_song_to_playlist(user=user, song=new_song, playlist=user.playlists[0])
-
     song_got_down_vote = song_service.down_vote_song(user=user, song=new_song)  # downvote 2-1 = 1
     response_data = song_got_down_vote.json()
 
@@ -117,8 +121,10 @@ def test_down_vote_song(user_service, user_factory, song_service, song_factory, 
 
 def test_down_vote_song_with_wrong_user_password(song_factory, song_service, user_factory, user_service,
                                                  playlist_factory,
-                                                 playlist_service):
-    user = user_factory.create_user("testcheckx", "test1", "playlistcheck1")
+                                                 playlist_service,
+                                                 fake_user_with_playlist):
+    # user = user_factory.create_user("testcheckx", "test1", "playlistcheck1")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("Song_x")
@@ -134,8 +140,10 @@ def test_down_vote_song_with_wrong_user_password(song_factory, song_service, use
 
 
 def test_validation_down_vote_song_with_rating_zero(user_service, user_factory, song_service, song_factory,
-                                                    playlist_service):
-    user = user_factory.create_user("danidani", "dani123", "psadlasdasd")
+                                                    playlist_service,
+                                                    fake_user_with_playlist):
+    # user = user_factory.create_user("danidani", "dani123", "psadlasdasd")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("down_vote_song_with_rating_zero")  # the default of rating is 0 so no need

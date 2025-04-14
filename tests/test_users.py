@@ -1,12 +1,13 @@
 from logger import logger
 
 
-def test_create_user(delete_all_users, user_service, user_factory):
-    user = user_factory.create_user(
-        username="testUser",
-        password="testUserPassword"
-    )
-    logger.debug(f"Creating user with payload: {user}")
+def test_create_user(delete_all_users, user_service, user_factory, fake_user):
+    # user = user_factory.create_user(
+    #     username="testUser",
+    #     password="testUserPassword"
+    # )
+    user = fake_user
+    logger.debug(f"Creating fake_user_with_playlist payload: {user}")
     response = user_service.add_user(user)
     logger.debug(f"Response status: {response.status_code}")
     logger.debug(f"Response body: {response.json()}")
@@ -18,12 +19,12 @@ def test_create_user(delete_all_users, user_service, user_factory):
     assert response_data["message"] == "OK"
 
 
-def test_validate_existing_user(user_service, user_factory):
-    user = user_factory.create_user(
-        username="testUser1",
-        password="testUserPassword1"
-    )
-
+def test_validate_existing_user(user_service, user_factory, fake_user):
+    # user = user_factory.create_user(
+    #     username="testUser1",
+    #     password="testUserPassword1"
+    # )
+    user = fake_user
     user_service.add_user(user)
     response_user_already_exist = user_service.add_user(user)
 
@@ -34,8 +35,9 @@ def test_validate_existing_user(user_service, user_factory):
     assert response_data["error"] == f"user with name {user.user_name} already exists."
 
 
-def test_get_user(user_service, user_factory):
-    user = user_factory.create_user('bomboclat', '123456')
+def test_get_user(user_service, user_factory, fake_user):
+    # user = user_factory.create_user('bomboclat', '123456')
+    user = fake_user
     user_service.add_user(user)
     response = user_service.get_user(user)
     data_response = response.json()
@@ -44,21 +46,14 @@ def test_get_user(user_service, user_factory):
     assert data_response['data']['user_name'] == user.user_name
     assert data_response['message'] == "OK"
 
-    response = user_service.get_user(user)
-    response_data = response.json()
-    print(response_data)
 
-    assert response.status_code == 200
-    assert response_data['data']['user_name'] == user.user_name
-    assert response_data['message'] == "OK"
-
-
-def test_add_playlist_to_user(user_service, user_factory):
-    user = user_factory.create_user(
-        username="Arnold",
-        password="topsicret",
-        playlist_name="The best of the best of the best5555"
-    )
+def test_add_playlist_to_user(user_service, user_factory, fake_user_with_playlist):
+    # user = user_factory.create_user(
+    #     username="Arnold",
+    #     password="topsicret",
+    #     playlist_name="The best of the best of the best5555"
+    # )
+    user = fake_user_with_playlist
     user_service.add_user(user)
 
     response = user_service.add_playlist(user)
@@ -70,12 +65,13 @@ def test_add_playlist_to_user(user_service, user_factory):
     assert response_data["message"] == "OK"
 
 
-def test_add_playlist_to_user_with_wrong_user_password(user_service, user_factory):
-    user = user_factory.create_user(
-        username="Arnold",
-        password="123456",
-        playlist_name="The best of the best of the best5555"
-    )
+def test_add_playlist_to_user_with_wrong_user_password(user_service, user_factory, fake_user_with_playlist):
+    # user = user_factory.create_user(
+    #     username="Arnold",
+    #     password="123456",
+    #     playlist_name="The best of the best of the best5555"
+    # )
+    user = fake_user_with_playlist
     user_service.add_user(user)
     wrong_user = user_factory.create_user(
         username=user.user_name,
@@ -91,14 +87,18 @@ def test_add_playlist_to_user_with_wrong_user_password(user_service, user_factor
     assert response_data["error"] == "either the user name or the password are wrong"
 
 
-def test_validate_adding_the_same_playlist_of_another_user(user_service, user_factory):
-    user = user_factory.create_user(
-        username="Arnold2",
-        password="topsicret2",
-        playlist_name="The best of the best of the best5555"
-    )
+def test_validate_adding_the_same_playlist_of_another_user(user_service, user_factory, fake_user_with_playlist):
+    # user = user_factory.create_user(
+    #     username="Arnold2",
+    #     password="topsicret2",
+    #     playlist_name="The best of the best of the best5555"
+    # )
+    user = fake_user_with_playlist
     user_service.add_user(user)
-    response = user_service.add_playlist(user)
+    user_service.add_playlist(user)
+    user2 = user_factory.create_user("user2", "passwordUser2", user.playlists[0].name)
+    user_service.add_user(user2)
+    response = user_service.add_playlist(user2)
 
     assert response.status_code == 200
 
@@ -107,12 +107,13 @@ def test_validate_adding_the_same_playlist_of_another_user(user_service, user_fa
     assert response_data['message'] == "OK"
 
 
-def test_validate_existing_playlist_should_return_error(user_service, user_factory):
+def test_validate_existing_playlist_should_return_error(user_service, user_factory, fake_user_with_playlist):
     user = user_factory.create_user(
         username="Arnold2",
         password="topsicret2",
         playlist_name="duplicate"
     )
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     response = user_service.add_playlist(user)
@@ -123,11 +124,12 @@ def test_validate_existing_playlist_should_return_error(user_service, user_facto
     assert response_data["error"] == f"{user.playlists[0].name} already a playlist of {user.user_name}"
 
 
-def test_add_new_friend_to_user(user_service, user_factory):
-    user = user_factory.create_user(
-        username="TestUsername",
-        password="TestPassword",
-    )
+def test_add_new_friend_to_user(user_service, user_factory, fake_user):
+    # user = user_factory.create_user(
+    #     username="TestUsername",
+    #     password="TestPassword",
+    # )
+    user = fake_user
     user_service.add_user(user)
     response = user_service.add_friend(user, "Savi6")
     assert response.status_code == 200
@@ -137,11 +139,12 @@ def test_add_new_friend_to_user(user_service, user_factory):
     assert response_data["message"] == "OK"
 
 
-def test_add_new_friend_to_user_with_wrong_user_password(user_service, user_factory):
-    user = user_factory.create_user(
-        username="TestUsername",
-        password="TestPassword",
-    )
+def test_add_new_friend_to_user_with_wrong_user_password(user_service, user_factory, fake_user):
+    # user = user_factory.create_user(
+    #     username="TestUsername",
+    #     password="TestPassword",
+    # )
+    user = fake_user
     user_service.add_user(user)
     wrong_user = user_factory.create_user(
         username=user.user_name,
@@ -155,11 +158,12 @@ def test_add_new_friend_to_user_with_wrong_user_password(user_service, user_fact
     assert response_data['error'] == "either the user name or the password are wrong"
 
 
-def test_validate_existing_friend_should_return_error(user_service, user_factory):
-    user = user_factory.create_user(
-        username="TestUsernamex",
-        password="TestPasswordx",
-    )
+def test_validate_existing_friend_should_return_error(user_service, user_factory, fake_user):
+    # user = user_factory.create_user(
+    #     username="TestUsernamex",
+    #     password="TestPasswordx",
+    # )
+    user = fake_user
     user_service.add_user(user)
     user_service.add_friend(user, friend_name="Savix")
     response = user_service.add_friend(user, friend_name="Savix")

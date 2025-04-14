@@ -1,12 +1,12 @@
-import logging
-
 import pytest
 from faker import Faker
 from infrastructure.api_client import APIClient
 from factories.playlist_factory import PlaylistFactory
 from factories.user_factory import UserFactory
 from logger import logger
+from models.playlist import PlaylistModel
 from models.song import SongModel
+from models.user import UserModel
 from services.playlist_service import PlaylistService
 from services.user_service import UserService
 from factories.song_factory import SongFactory
@@ -51,6 +51,28 @@ def user_factory():
     return UserFactory()
 
 
+faker = Faker()
+
+
+@pytest.fixture
+def fake_user():
+    # Create and return the fake user
+    fake_user = UserModel(user_name=faker.user_name(), user_password=faker.password())
+    logger.info(f'created fake user:\n {fake_user}')
+    return fake_user
+
+
+@pytest.fixture
+def fake_user_with_playlist():
+    # Create a fake playlist
+    fake_playlist = \
+        PlaylistModel(name=faker.word(), songs=[])
+    fake_user = UserModel(user_name=faker.user_name(), user_password=faker.password(), playlists=[fake_playlist])
+    logger.info(f'created fake user:\n {fake_user}')
+    # Create a nd return the fake user
+    return fake_user
+
+
 @pytest.fixture()
 def song_service():
     return SongService()
@@ -73,6 +95,6 @@ def playlist_factory():
 
 @pytest.fixture(autouse=True)
 def log_test_start_and_end(request):
-    logger.info(f"========== Starting test: {request.node.name} ==========")
+    logger.info(f"=============================== Starting test: {request.node.name}===============================")
     yield
-    logger.info(f"========== Finished test: {request.node.name} ==========")
+    logger.info(f"=============================== Finished test: {request.node.name}==============================="'\n')

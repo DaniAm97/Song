@@ -11,7 +11,7 @@ class UserFactory:
         if playlist_name:
             playlists = [PlaylistModel(name=playlist_name, songs=[])]  # Empty list if no song is provided
 
-        return UserModel(user_name=username, user_password=password, playlists=playlists, friends=[])
+        return UserModel(user_name=username, user_password=password, playlists=playlists)
 
     # @staticmethod
     # def get_user():

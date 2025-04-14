@@ -1,0 +1,251 @@
+2025-04-14 20:45:39,792 - INFO - =============================== Starting test: test_add_song_to_playlist===============================
+2025-04-14 20:45:39,793 - INFO - created fake user:
+ user_name='anthonywright' user_password='Ab0Gbr#i0$' friends=[] playlists=[PlaylistModel(name='yeah', songs=[])]
+2025-04-14 20:45:39,800 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,801 - DEBUG - Response body of add_user: {'data': 'anthonywright', 'message': 'OK'}
+2025-04-14 20:45:39,805 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:39,806 - DEBUG - Response body of add_playlist: {'data': 'yeah', 'message': 'OK'}
+2025-04-14 20:45:39,811 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,811 - DEBUG - Response body of add_song: {'data': 'Song 12141', 'message': 'OK'}
+2025-04-14 20:45:39,816 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:39,816 - DEBUG - Response body of add_song_to_playlist: {'data': 'Song 12141', 'message': 'OK'}
+2025-04-14 20:45:39,819 - INFO - =============================== Finished test: test_add_song_to_playlist===============================
+
+2025-04-14 20:45:39,820 - INFO - =============================== Starting test: test_validation_add_song_that_already_in_the_playlist===============================
+2025-04-14 20:45:39,821 - INFO - created fake user:
+ user_name='levymalik' user_password='M5!6Awgbhm' friends=[] playlists=[PlaylistModel(name='discuss', songs=[])]
+2025-04-14 20:45:39,826 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,826 - DEBUG - Response body of add_user: {'data': 'levymalik', 'message': 'OK'}
+2025-04-14 20:45:39,831 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:39,831 - DEBUG - Response body of add_playlist: {'data': 'discuss', 'message': 'OK'}
+2025-04-14 20:45:39,836 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,836 - DEBUG - Response body of add_song: {'data': 'Song 1212', 'message': 'OK'}
+2025-04-14 20:45:39,841 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:39,841 - DEBUG - Response body of add_song_to_playlist: {'data': 'Song 1212', 'message': 'OK'}
+2025-04-14 20:45:39,846 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:39,846 - DEBUG - Response body of add_song_to_playlist: {'error': 'the song Song 1212 already exist in the playlist or not in the songs collection'}
+2025-04-14 20:45:39,846 - INFO - =============================== Finished test: test_validation_add_song_that_already_in_the_playlist===============================
+
+2025-04-14 20:45:39,847 - INFO - =============================== Starting test: test_validation_add_song_that_not_exist_in_the_system_to_the_playlist===============================
+2025-04-14 20:45:39,847 - INFO - created fake user:
+ user_name='rickylowe' user_password='p$0_@ung^C' friends=[] playlists=[PlaylistModel(name='let', songs=[])]
+2025-04-14 20:45:39,853 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,853 - DEBUG - Response body of add_user: {'data': 'rickylowe', 'message': 'OK'}
+2025-04-14 20:45:39,857 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:39,858 - DEBUG - Response body of add_playlist: {'data': 'let', 'message': 'OK'}
+2025-04-14 20:45:39,863 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:39,863 - DEBUG - Response body of add_song_to_playlist: {'error': 'the song x already exist in the playlist or not in the songs collection'}
+2025-04-14 20:45:39,863 - INFO - =============================== Finished test: test_validation_add_song_that_not_exist_in_the_system_to_the_playlist===============================
+
+2025-04-14 20:45:39,869 - INFO - =============================== Starting test: test_add_song===============================
+2025-04-14 20:45:39,874 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,875 - DEBUG - Response body of add_song: {'data': 'dani dani dani dani shovevani3', 'message': 'OK'}
+2025-04-14 20:45:39,875 - INFO - =============================== Finished test: test_add_song===============================
+
+2025-04-14 20:45:39,876 - INFO - =============================== Starting test: test_get_song===============================
+2025-04-14 20:45:39,881 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,881 - DEBUG - Response body of add_song: {'data': 'Dani 222', 'message': 'OK'}
+2025-04-14 20:45:39,886 - INFO - =============================== Finished test: test_get_song===============================
+
+2025-04-14 20:45:39,887 - INFO - =============================== Starting test: test_validate_existing_song_in_the_system===============================
+2025-04-14 20:45:39,892 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,892 - DEBUG - Response body of add_song: {'data': 'dani dani', 'message': 'OK'}
+2025-04-14 20:45:39,897 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,897 - DEBUG - Response body of add_song: {'error': 'this song already exist in the collection'}
+2025-04-14 20:45:39,897 - INFO - =============================== Finished test: test_validate_existing_song_in_the_system===============================
+
+2025-04-14 20:45:39,898 - INFO - =============================== Starting test: test_get_existing_song===============================
+2025-04-14 20:45:39,903 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,903 - DEBUG - Response body of add_song: {'data': 'existing song', 'message': 'OK'}
+2025-04-14 20:45:39,908 - INFO - =============================== Finished test: test_get_existing_song===============================
+
+2025-04-14 20:45:39,909 - INFO - =============================== Starting test: test_validate_get_song_that_doesnt_exist===============================
+2025-04-14 20:45:39,914 - INFO - =============================== Finished test: test_validate_get_song_that_doesnt_exist===============================
+
+2025-04-14 20:45:39,915 - INFO - =============================== Starting test: test_upvote_song===============================
+2025-04-14 20:45:39,915 - INFO - created fake user:
+ user_name='webbmelissa' user_password='&9iPMG^n)7' friends=[] playlists=[PlaylistModel(name='up', songs=[])]
+2025-04-14 20:45:39,921 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,921 - DEBUG - Response body of add_user: {'data': 'webbmelissa', 'message': 'OK'}
+2025-04-14 20:45:39,926 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:39,926 - DEBUG - Response body of add_playlist: {'data': 'up', 'message': 'OK'}
+2025-04-14 20:45:39,931 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,931 - DEBUG - Response body of add_song: {'data': 'Song x10', 'message': 'OK'}
+2025-04-14 20:45:39,936 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:39,936 - DEBUG - Response body of add_song_to_playlist: {'data': 'Song x10', 'message': 'OK'}
+2025-04-14 20:45:39,941 - DEBUG - Response status of up_vote_song: 200
+2025-04-14 20:45:39,941 - DEBUG - Response body of up_vote_song: {'data': {'rating': 1, 'song_title': 'Song x10'}, 'message': 'OK'}
+2025-04-14 20:45:39,942 - INFO - =============================== Finished test: test_upvote_song===============================
+
+2025-04-14 20:45:39,943 - INFO - =============================== Starting test: test_upvote_song_with_wrong_user_password===============================
+2025-04-14 20:45:39,948 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,949 - DEBUG - Response body of add_user: {'data': 'testcheckx', 'message': 'OK'}
+2025-04-14 20:45:39,954 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:39,954 - DEBUG - Response body of add_playlist: {'data': 'playlistcheck1', 'message': 'OK'}
+2025-04-14 20:45:39,959 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:39,959 - DEBUG - Response body of add_song: {'data': 'Song_x', 'message': 'OK'}
+2025-04-14 20:45:39,964 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:39,964 - DEBUG - Response body of add_song_to_playlist: {'data': 'Song_x', 'message': 'OK'}
+2025-04-14 20:45:39,968 - DEBUG - Response status of up_vote_song: 200
+2025-04-14 20:45:39,968 - DEBUG - Response body of up_vote_song: {'error': 'either the user name or the password are wrong'}
+2025-04-14 20:45:39,969 - INFO - =============================== Finished test: test_upvote_song_with_wrong_user_password===============================
+
+2025-04-14 20:45:39,970 - INFO - =============================== Starting test: test_validation_upvote_song_that_not_exist===============================
+2025-04-14 20:45:39,970 - INFO - created fake user:
+ user_name='laurenboyd' user_password='#CI)p9Ya%_' friends=[] playlists=[PlaylistModel(name='fill', songs=[])]
+2025-04-14 20:45:39,976 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,976 - DEBUG - Response body of add_user: {'data': 'laurenboyd', 'message': 'OK'}
+2025-04-14 20:45:39,981 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:39,981 - DEBUG - Response body of add_playlist: {'data': 'fill', 'message': 'OK'}
+2025-04-14 20:45:39,986 - DEBUG - Response status of up_vote_song: 200
+2025-04-14 20:45:39,986 - DEBUG - Response body of up_vote_song: {'error': 'no such song in the songs collection'}
+2025-04-14 20:45:39,986 - INFO - =============================== Finished test: test_validation_upvote_song_that_not_exist===============================
+
+2025-04-14 20:45:39,987 - INFO - =============================== Starting test: test_down_vote_song===============================
+2025-04-14 20:45:39,988 - INFO - created fake user:
+ user_name='jeffreymoss' user_password='BUO8+NhC%(' friends=[] playlists=[PlaylistModel(name='improve', songs=[])]
+2025-04-14 20:45:39,994 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:39,994 - DEBUG - Response body of add_user: {'data': 'jeffreymoss', 'message': 'OK'}
+2025-04-14 20:45:40,000 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,000 - DEBUG - Response body of add_playlist: {'data': 'improve', 'message': 'OK'}
+2025-04-14 20:45:40,005 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:40,005 - DEBUG - Response body of add_song: {'data': 'down_vote_song', 'message': 'OK'}
+2025-04-14 20:45:40,011 - DEBUG - Response status of up_vote_song: 200
+2025-04-14 20:45:40,011 - DEBUG - Response body of up_vote_song: {'data': {'rating': 1, 'song_title': 'down_vote_song'}, 'message': 'OK'}
+2025-04-14 20:45:40,016 - DEBUG - Response status of up_vote_song: 200
+2025-04-14 20:45:40,016 - DEBUG - Response body of up_vote_song: {'data': {'rating': 2, 'song_title': 'down_vote_song'}, 'message': 'OK'}
+2025-04-14 20:45:40,021 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:40,022 - DEBUG - Response body of add_song_to_playlist: {'data': 'down_vote_song', 'message': 'OK'}
+2025-04-14 20:45:40,027 - DEBUG - Response status of down_vote_song: 200
+2025-04-14 20:45:40,028 - DEBUG - Response body of down_vote_song: {'data': {'rating': 1, 'song_title': 'down_vote_song'}, 'message': 'OK'}
+2025-04-14 20:45:40,028 - INFO - =============================== Finished test: test_down_vote_song===============================
+
+2025-04-14 20:45:40,029 - INFO - =============================== Starting test: test_down_vote_song_with_wrong_user_password===============================
+2025-04-14 20:45:40,030 - INFO - created fake user:
+ user_name='nancy67' user_password='8O#6Qxr7a1' friends=[] playlists=[PlaylistModel(name='will', songs=[])]
+2025-04-14 20:45:40,035 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,035 - DEBUG - Response body of add_user: {'data': 'nancy67', 'message': 'OK'}
+2025-04-14 20:45:40,041 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,041 - DEBUG - Response body of add_playlist: {'data': 'will', 'message': 'OK'}
+2025-04-14 20:45:40,046 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:40,046 - DEBUG - Response body of add_song: {'error': 'this song already exist in the collection'}
+2025-04-14 20:45:40,051 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:40,052 - DEBUG - Response body of add_song_to_playlist: {'data': 'Song_x', 'message': 'OK'}
+2025-04-14 20:45:40,056 - DEBUG - Response status of down_vote_song: 200
+2025-04-14 20:45:40,056 - DEBUG - Response body of down_vote_song: {'error': 'either the user name or the password are wrong'}
+2025-04-14 20:45:40,057 - INFO - =============================== Finished test: test_down_vote_song_with_wrong_user_password===============================
+
+2025-04-14 20:45:40,058 - INFO - =============================== Starting test: test_validation_down_vote_song_with_rating_zero===============================
+2025-04-14 20:45:40,059 - INFO - created fake user:
+ user_name='joneschristy' user_password='cQ3gZzzE%c' friends=[] playlists=[PlaylistModel(name='case', songs=[])]
+2025-04-14 20:45:40,064 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,064 - DEBUG - Response body of add_user: {'data': 'joneschristy', 'message': 'OK'}
+2025-04-14 20:45:40,069 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,069 - DEBUG - Response body of add_playlist: {'data': 'case', 'message': 'OK'}
+2025-04-14 20:45:40,073 - DEBUG - Response status of add_song: 200
+2025-04-14 20:45:40,073 - DEBUG - Response body of add_song: {'data': 'down_vote_song_with_rating_zero', 'message': 'OK'}
+2025-04-14 20:45:40,078 - DEBUG - Response status of add_song_to_playlist: 200
+2025-04-14 20:45:40,078 - DEBUG - Response body of add_song_to_playlist: {'data': 'down_vote_song_with_rating_zero', 'message': 'OK'}
+2025-04-14 20:45:40,083 - DEBUG - Response status of down_vote_song: 200
+2025-04-14 20:45:40,083 - DEBUG - Response body of down_vote_song: {'data': {'rating': 0, 'song_title': 'down_vote_song_with_rating_zero'}, 'message': 'OK'}
+2025-04-14 20:45:40,083 - INFO - =============================== Finished test: test_validation_down_vote_song_with_rating_zero===============================
+
+2025-04-14 20:45:40,089 - INFO - =============================== Starting test: test_create_user===============================
+2025-04-14 20:45:40,090 - INFO - created fake user:
+ user_name='cruzmichael' user_password='^U%qDEjPo8' friends=[] playlists=[]
+2025-04-14 20:45:40,090 - DEBUG - Creating fake_user_with_playlist payload: user_name='cruzmichael' user_password='^U%qDEjPo8' friends=[] playlists=[]
+2025-04-14 20:45:40,094 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,095 - DEBUG - Response body of add_user: {'data': 'cruzmichael', 'message': 'OK'}
+2025-04-14 20:45:40,095 - DEBUG - Response status: 200
+2025-04-14 20:45:40,095 - DEBUG - Response body: {'data': 'cruzmichael', 'message': 'OK'}
+2025-04-14 20:45:40,095 - INFO - =============================== Finished test: test_create_user===============================
+
+2025-04-14 20:45:40,097 - INFO - =============================== Starting test: test_validate_existing_user===============================
+2025-04-14 20:45:40,098 - INFO - created fake user:
+ user_name='jade97' user_password='GEFaWgmi%4' friends=[] playlists=[]
+2025-04-14 20:45:40,102 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,102 - DEBUG - Response body of add_user: {'data': 'jade97', 'message': 'OK'}
+2025-04-14 20:45:40,107 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,107 - DEBUG - Response body of add_user: {'error': 'user with name jade97 already exists.'}
+2025-04-14 20:45:40,108 - INFO - =============================== Finished test: test_validate_existing_user===============================
+
+2025-04-14 20:45:40,109 - INFO - =============================== Starting test: test_get_user===============================
+2025-04-14 20:45:40,109 - INFO - created fake user:
+ user_name='tinaadams' user_password='D*0P+BlIKw' friends=[] playlists=[]
+2025-04-14 20:45:40,114 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,115 - DEBUG - Response body of add_user: {'data': 'tinaadams', 'message': 'OK'}
+2025-04-14 20:45:40,119 - DEBUG - Response status of get_user: 200
+2025-04-14 20:45:40,119 - DEBUG - Response body of get_user: {'data': {'friends': [], 'playlists': [], 'user_name': 'tinaadams'}, 'message': 'OK'}
+2025-04-14 20:45:40,120 - INFO - =============================== Finished test: test_get_user===============================
+
+2025-04-14 20:45:40,121 - INFO - =============================== Starting test: test_add_playlist_to_user===============================
+2025-04-14 20:45:40,121 - INFO - created fake user:
+ user_name='hjenkins' user_password='*(K6cW(l69' friends=[] playlists=[PlaylistModel(name='should', songs=[])]
+2025-04-14 20:45:40,127 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,127 - DEBUG - Response body of add_user: {'data': 'hjenkins', 'message': 'OK'}
+2025-04-14 20:45:40,132 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,133 - DEBUG - Response body of add_playlist: {'data': 'should', 'message': 'OK'}
+2025-04-14 20:45:40,133 - INFO - =============================== Finished test: test_add_playlist_to_user===============================
+
+2025-04-14 20:45:40,134 - INFO - =============================== Starting test: test_add_playlist_to_user_with_wrong_user_password===============================
+2025-04-14 20:45:40,134 - INFO - created fake user:
+ user_name='carrie88' user_password='&k+PkPY212' friends=[] playlists=[PlaylistModel(name='enjoy', songs=[])]
+2025-04-14 20:45:40,140 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,140 - DEBUG - Response body of add_user: {'data': 'carrie88', 'message': 'OK'}
+2025-04-14 20:45:40,144 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,145 - DEBUG - Response body of add_playlist: {'error': 'either the user name or the password are wrong'}
+2025-04-14 20:45:40,145 - INFO - =============================== Finished test: test_add_playlist_to_user_with_wrong_user_password===============================
+
+2025-04-14 20:45:40,146 - INFO - =============================== Starting test: test_validate_adding_the_same_playlist_of_another_user===============================
+2025-04-14 20:45:40,147 - INFO - created fake user:
+ user_name='reesedanielle' user_password=')+oW3Avv6U' friends=[] playlists=[PlaylistModel(name='check', songs=[])]
+2025-04-14 20:45:40,152 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,152 - DEBUG - Response body of add_user: {'data': 'reesedanielle', 'message': 'OK'}
+2025-04-14 20:45:40,156 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,156 - DEBUG - Response body of add_playlist: {'data': 'check', 'message': 'OK'}
+2025-04-14 20:45:40,161 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,161 - DEBUG - Response body of add_user: {'data': 'user2', 'message': 'OK'}
+2025-04-14 20:45:40,166 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,166 - DEBUG - Response body of add_playlist: {'data': 'check', 'message': 'OK'}
+2025-04-14 20:45:40,167 - INFO - =============================== Finished test: test_validate_adding_the_same_playlist_of_another_user===============================
+
+2025-04-14 20:45:40,167 - INFO - =============================== Starting test: test_validate_existing_playlist_should_return_error===============================
+2025-04-14 20:45:40,168 - INFO - created fake user:
+ user_name='cmurphy' user_password='G+4XHwIcn)' friends=[] playlists=[PlaylistModel(name='vote', songs=[])]
+2025-04-14 20:45:40,173 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,173 - DEBUG - Response body of add_user: {'data': 'cmurphy', 'message': 'OK'}
+2025-04-14 20:45:40,179 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,179 - DEBUG - Response body of add_playlist: {'data': 'vote', 'message': 'OK'}
+2025-04-14 20:45:40,184 - DEBUG - Response status of add_playlist: 200
+2025-04-14 20:45:40,184 - DEBUG - Response body of add_playlist: {'error': 'vote already a playlist of cmurphy'}
+2025-04-14 20:45:40,184 - INFO - =============================== Finished test: test_validate_existing_playlist_should_return_error===============================
+
+2025-04-14 20:45:40,185 - INFO - =============================== Starting test: test_add_new_friend_to_user===============================
+2025-04-14 20:45:40,186 - INFO - created fake user:
+ user_name='greenerobert' user_password='DBKQfJu0*3' friends=[] playlists=[]
+2025-04-14 20:45:40,192 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,192 - DEBUG - Response body of add_user: {'data': 'greenerobert', 'message': 'OK'}
+2025-04-14 20:45:40,198 - DEBUG - Response status of add_friend: 200
+2025-04-14 20:45:40,198 - DEBUG - Response body of add_friend: {'data': 'Savi6', 'message': 'OK'}
+2025-04-14 20:45:40,199 - INFO - =============================== Finished test: test_add_new_friend_to_user===============================
+
+2025-04-14 20:45:40,199 - INFO - =============================== Starting test: test_add_new_friend_to_user_with_wrong_user_password===============================
+2025-04-14 20:45:40,200 - INFO - created fake user:
+ user_name='dakota97' user_password='H%x1&dBq&w' friends=[] playlists=[]
+2025-04-14 20:45:40,206 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,206 - DEBUG - Response body of add_user: {'data': 'dakota97', 'message': 'OK'}
+2025-04-14 20:45:40,210 - DEBUG - Response status of add_friend: 200
+2025-04-14 20:45:40,210 - DEBUG - Response body of add_friend: {'error': 'either the user name or the password are wrong'}
+2025-04-14 20:45:40,211 - INFO - =============================== Finished test: test_add_new_friend_to_user_with_wrong_user_password===============================
+
+2025-04-14 20:45:40,212 - INFO - =============================== Starting test: test_validate_existing_friend_should_return_error===============================
+2025-04-14 20:45:40,212 - INFO - created fake user:
+ user_name='mmcdonald' user_password='Q+s8*Tviu@' friends=[] playlists=[]
+2025-04-14 20:45:40,218 - DEBUG - Response status of add_user: 200
+2025-04-14 20:45:40,218 - DEBUG - Response body of add_user: {'data': 'mmcdonald', 'message': 'OK'}
+2025-04-14 20:45:40,224 - DEBUG - Response status of add_friend: 200
+2025-04-14 20:45:40,224 - DEBUG - Response body of add_friend: {'data': 'Savix', 'message': 'OK'}
+2025-04-14 20:45:40,228 - DEBUG - Response status of add_friend: 200
+2025-04-14 20:45:40,229 - DEBUG - Response body of add_friend: {'error': 'Savix already a friend of mmcdonald'}
+2025-04-14 20:45:40,229 - INFO - =============================== Finished test: test_validate_existing_friend_should_return_error===============================
+

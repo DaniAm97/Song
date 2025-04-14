@@ -1,6 +1,7 @@
 def test_add_song_to_playlist(playlist_service, user_service, user_factory, song_service,
-                              song_factory):
-    user = user_factory.create_user("testttt1", "123456", "test_playlist")
+                              song_factory, fake_user_with_playlist):
+    # user = user_factory.create_user("testttt1", "123456", "test_playlist")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("Song 12141")
@@ -13,9 +14,11 @@ def test_add_song_to_playlist(playlist_service, user_service, user_factory, song
     assert response_data["message"] == "OK"
 
 
-def test_validation_add_song_that_already_in_the_playlist(playlist_service, user_service, user_factory, song_service,
-                                                          song_factory):
-    user = user_factory.create_user("testttt", "123456", "test_playlist")
+def test_validation_add_song_that_already_in_the_playlist(playlist_service, user_service, song_service,
+                                                          song_factory,
+                                                          fake_user_with_playlist):
+    # user = user_factory.create_user("testttt", "123456", "test_playlist")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("Song 1212")
@@ -29,10 +32,12 @@ def test_validation_add_song_that_already_in_the_playlist(playlist_service, user
                                       f"collection")
 
 
-def test_validation_add_song_that_not_exist_in_the_system_to_the_playlist(playlist_service, user_service, user_factory,
+def test_validation_add_song_that_not_exist_in_the_system_to_the_playlist(playlist_service, user_service,
                                                                           song_service,
-                                                                          song_factory):
-    user = user_factory.create_user("testttt", "123456", "test_playlist")
+                                                                          song_factory,
+                                                                          fake_user_with_playlist):
+    # user = user_factory.create_user("testttt", "123456", "test_playlist")
+    user = fake_user_with_playlist
     user_service.add_user(user)
     user_service.add_playlist(user)
     new_song = song_factory.create_song("x")
